@@ -6,6 +6,7 @@ var Schema = mongoose.Schema; //crea objeto tipo schema para guardar datos
 var UserSchema = Schema({
   name: String,
   surname: String,
+  email: String,
   password: String,
   role: String,
   image: String
