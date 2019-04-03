@@ -1,7 +1,7 @@
 "use strict";
 var bcrypt = require("bcrypt-nodejs");
 var User = require("../models/user");
-
+var jwt = require("../services/jwt");
 function pruebas(req, res) {
   res.status(200).send({
     message: "Probando ruta del controlador de usuarios"
@@ -59,8 +59,9 @@ function loginUser(req, res) {
       } else {
         bcrypt.compare(password, user.password, (err, check) => {
           if (check) {
-            if (params.gethas) {
+            if (params.gethash) {
               //devolver un token de jwt
+              res.status(200).send({ token: jwt.createToken(user) });
             } else {
               res.status(200).send({ user });
             }
