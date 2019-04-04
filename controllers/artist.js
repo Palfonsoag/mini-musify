@@ -132,7 +132,6 @@ function deleteArtist(req, res) {
 }
 
 function uploadImage(req, res) {
-  console.log(req.params.id);
   var artistId = req.params.id;
   var file_name = "not_uploaded";
   if (req.files) {
