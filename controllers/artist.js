@@ -152,7 +152,7 @@ function uploadImage(req, res) {
             if (!artistUpdated) {
               res.status(404).send({ message: "El artista no existe" });
             } else {
-              res.status(200).send({ artist: artistUpdated });
+              res.status(200).send({ image: file_name, artist: artistUpdated });
             }
           }
         }

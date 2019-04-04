@@ -150,7 +150,7 @@ function uploadImage(req, res) {
             if (!albumUpdated) {
               res.status(404).send({ message: "El Album no existe" });
             } else {
-              res.status(200).send({ album: albumUpdated });
+              res.status(200).send({ image: file_name, album: albumUpdated });
             }
           }
         }
