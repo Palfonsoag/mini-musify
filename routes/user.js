@@ -6,9 +6,9 @@ var UserController = require("../controllers/user");
 var api = express.Router();
 var md_auth = require("../middlewares/authenticated");
 
-var multipart = require("connect-multiparty");
+var multiparty = require("connect-multiparty");
 
-var md_upload = multipart({ uploadDir: "./uploads/users" });
+var md_upload = multiparty({ uploadDir: "./uploads/users" });
 //rutas del api
 api.get("/user-controller-test", md_auth.ensureAuth, UserController.pruebas);
 api.put("/update-user/:id", md_auth.ensureAuth, UserController.updateUser);

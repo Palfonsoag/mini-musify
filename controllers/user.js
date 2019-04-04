@@ -83,7 +83,7 @@ function loginUser(req, res) {
 function updateUser(req, res) {
   var userId = req.params.id;
   var update = req.body;
-  User.findOneAndUpdate(userId, update, (err, userUpdated) => {
+  User.findOneAndUpdate({ _id: userId }, update, (err, userUpdated) => {
     if (err) {
       res.status(500).send({ message: "error al actualizar el usuari" });
     } else {
@@ -97,7 +97,7 @@ function updateUser(req, res) {
 }
 
 function uploadImage(req, res) {
-  var userId = req.param.id;
+  var userId = req.params.id;
   var file_name = "not_uploaded";
   if (req.files) {
     var file_path = req.files.image.path;
@@ -108,7 +108,7 @@ function uploadImage(req, res) {
 
     if (file_ext == "png" || file_ext == "jpg" || file_ext == "gif") {
       User.findOneAndUpdate(
-        userId,
+        { _id: userId },
         { image: file_name },
         (err, userUpdated) => {
           if (err) {

@@ -1,2 +1,4 @@
 node_modules/
-uploads/users/
+uploads/users/*
+uploads/artists/*
+uploads/albums/*
