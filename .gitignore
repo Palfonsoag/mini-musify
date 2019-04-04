@@ -1,0 +1,5 @@
+node_modules/
+uploads/users/*
+uploads/artists/*
+uploads/albums/*
+uploads/songs/*
