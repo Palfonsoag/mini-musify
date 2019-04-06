@@ -83,17 +83,48 @@ function loginUser(req, res) {
 function updateUser(req, res) {
   var userId = req.params.id;
   var update = req.body;
-  User.findOneAndUpdate({ _id: userId }, update, (err, userUpdated) => {
-    if (err) {
-      res.status(500).send({ message: "error al actualizar el usuari" });
-    } else {
-      if (!userUpdated) {
-        res.status(404).send({ message: "El usuario no existe" });
+  if (userId == req.user.sub) {
+    res
+      .status(500)
+      .send({ message: "No tienes permitido actualizar este usuario" });
+  } else {
+    User.findOneAndUpdate({ _id: userId }, update, (err, userUpdated) => {
+      if (err) {
+        res.status(500).send({ message: "error al actualizar el usuario" });
       } else {
-        res.status(200).send({ user: userUpdated });
+        if (!userUpdated) {
+          res.status(404).send({ message: "El usuario no existe" });
+        } else {
+          res.status(200).send({ user: userUpdated });
+        }
       }
-    }
-  });
+    });
+  }
+}
+
+function getUsers(req, res) {
+  var page;
+  if (req.params.page) {
+    page = req.params.page;
+  } else {
+    page = 1;
+  }
+
+  var itemsPerPage = 3;
+
+  User.find()
+    .sort("name")
+    .paginate(page, itemsPerPage, (err, users, total) => {
+      if (err) {
+        res.status(500).send({ message: "error en la peticion" });
+      } else {
+        if (!users) {
+          res.status(404).send({ message: "No hay Usuarios" });
+        } else {
+          return res.status(200).send({ totalItems: total, users });
+        }
+      }
+    });
 }
 
 function uploadImage(req, res) {
@@ -147,5 +178,6 @@ module.exports = {
   loginUser,
   updateUser,
   uploadImage,
-  getImageFile
+  getImageFile,
+  getUsers
 };
