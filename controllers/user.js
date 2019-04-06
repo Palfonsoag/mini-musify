@@ -83,7 +83,7 @@ function loginUser(req, res) {
 function updateUser(req, res) {
   var userId = req.params.id;
   var update = req.body;
-  if (userId == req.user.sub) {
+  if (userId != req.user.sub) {
     res
       .status(500)
       .send({ message: "No tienes permitido actualizar este usuario" });
