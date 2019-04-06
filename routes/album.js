@@ -29,10 +29,6 @@ api.post(
   [md_auth.ensureAuth, md_upload],
   AlbumController.uploadImage
 );
-api.get(
-  "/get-image-album/:imageFile",
-  md_auth.ensureAuth,
-  AlbumController.getImageFile
-);
+api.get("/get-image-album/:imageFile", AlbumController.getImageFile);
 
 module.exports = api;

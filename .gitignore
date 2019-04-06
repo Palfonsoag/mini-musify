@@ -1,5 +1,9 @@
 node_modules/
 uploads/users/*
-uploads/artists/*
 uploads/albums/*
+uploads/artists/*
 uploads/songs/*
+!uploads/users/.gitkeep 
+!uploads/albums/.gitkeep 
+!uploads/artists/.gitkeep 
+!uploads/songs/.gitkeep 

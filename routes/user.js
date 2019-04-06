@@ -20,10 +20,6 @@ api.post(
   [md_auth.ensureAuth, md_upload],
   UserController.uploadImage
 );
-api.get(
-  "/get-image-user/:imageFile",
-  md_auth.ensureAuth,
-  UserController.getImageFile
-);
+api.get("/get-image-user/:imageFile", UserController.getImageFile);
 
 module.exports = api;

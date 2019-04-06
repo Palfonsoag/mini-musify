@@ -28,10 +28,6 @@ api.post(
   [md_auth.ensureAuth, md_upload],
   ArtistController.uploadImage
 );
-api.get(
-  "/get-image-artist/:imageFile",
-  md_auth.ensureAuth,
-  ArtistController.getImageFile
-);
+api.get("/get-image-artist/:imageFile", ArtistController.getImageFile);
 
 module.exports = api;
